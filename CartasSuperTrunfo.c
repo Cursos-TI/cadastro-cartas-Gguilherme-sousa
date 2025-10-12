@@ -1,98 +1,84 @@
 #include <stdio.h>
-#include <string.h>
-
-#define TOTAL_ESTADOS 8
-#define CIDADES_POR_ESTADO 4
-#define TOTAL_CARTAS (TOTAL_ESTADOS * CIDADES_POR_ESTADO)
-
-typedef struct {
-    char codigo[4];
-    char estado[50];
-    char cidade[50];
-    float populacao;
-    float area;
-    float pib;
-    int pontosTuristicos;
-} Carta;
 
 int main() {
-    Carta cartas[TOTAL_CARTAS];
+    // ---------------- DADOS DA CARTA 1 ----------------
+    char estado1 = 'A';
+    char codigo1[4] = "A01";
+    char cidade1[50] = "São Paulo";
+    int populacao1 = 12325000;
+    float area1 = 1521.11;
+    float pib1 = 699.28;
+    int pontosTuristicos1 = 50;
 
-    char estados[TOTAL_ESTADOS][50] = {
-        "São Paulo", "Rio de Janeiro", "Minas Gerais", "Bahia",
-        "Paraná", "Pernambuco", "Rio Grande do Sul", "Ceará"
-    };
+    // ---------------- DADOS DA CARTA 2 ----------------
+    char estado2 = 'B';
+    char codigo2[4] = "B03";
+    char cidade2[50] = "Curitiba";
+    int populacao2 = 1964000;
+    float area2 = 435.04;
+    float pib2 = 120.56;
+    int pontosTuristicos2 = 25;
 
-    char cidades[TOTAL_ESTADOS][CIDADES_POR_ESTADO][50] = {
-        {"São Paulo", "Campinas", "Santos", "Ribeirão Preto"},
-        {"Rio de Janeiro", "Niterói", "Petrópolis", "Volta Redonda"},
-        {"Belo Horizonte", "Uberlândia", "Juiz de Fora", "Ouro Preto"},
-        {"Salvador", "Feira de Santana", "Porto Seguro", "Ilhéus"},
-        {"Curitiba", "Londrina", "Maringá", "Cascavel"},
-        {"Recife", "Olinda", "Caruaru", "Petrolina"},
-        {"Porto Alegre", "Caxias do Sul", "Pelotas", "Santa Maria"},
-        {"Fortaleza", "Juazeiro do Norte", "Sobral", "Crato"}
-    };
+    printf("===== SUPER TRUNFO - CIDADES BRASILEIRAS =====\n\n");
 
-    char letrasEstados[TOTAL_ESTADOS] = {'A','B','C','D','E','F','G','H'};
-    int contador = 0;
+    // ---------------- EXIBIÇÃO DAS CARTAS ----------------
+    printf("Carta 1\n");
+    printf("Estado: %c\n", estado1);
+    printf("Código: %s\n", codigo1);
+    printf("Cidade: %s\n", cidade1);
+    printf("População: %d habitantes\n", populacao1);
+    printf("Área: %.2f km²\n", area1);
+    printf("PIB: %.2f bilhões de reais\n", pib1);
+    printf("Pontos Turísticos: %d\n\n", pontosTuristicos1);
 
-    printf("=============================================\n");
-    printf("        SUPER TRUNFO - PAISES (Nível Novato)\n");
-    printf("=============================================\n\n");
-    printf("Neste jogo, você vai cadastrar cidades do Brasil,\n");
-    printf("informando dados sobre população, área, PIB e pontos turísticos.\n");
-    printf("Vamos começar!\n\n");
+    printf("Carta 2\n");
+    printf("Estado: %c\n", estado2);
+    printf("Código: %s\n", codigo2);
+    printf("Cidade: %s\n", cidade2);
+    printf("População: %d habitantes\n", populacao2);
+    printf("Área: %.2f km²\n", area2);
+    printf("PIB: %.2f bilhões de reais\n", pib2);
+    printf("Pontos Turísticos: %d\n\n", pontosTuristicos2);
 
-    for (int i = 0; i < TOTAL_ESTADOS; i++) {
-        printf("----------------------------------------------------\n");
-        printf("Estado %c - %s\n", letrasEstados[i], estados[i]);
-        printf("----------------------------------------------------\n");
+    // ---------------- COMPARAÇÃO AUTOMÁTICA ----------------
+    printf("===== RESULTADO DAS COMPARAÇÕES =====\n\n");
 
-        for (int j = 0; j < CIDADES_POR_ESTADO; j++) {
-            sprintf(cartas[contador].codigo, "%c%02d", letrasEstados[i], j + 1);
-            strcpy(cartas[contador].estado, estados[i]);
-            strcpy(cartas[contador].cidade, cidades[i][j]);
+    // População
+    if (populacao1 > populacao2)
+        printf("População: %s vence (%d habitantes contra %d)\n", cidade1, populacao1, populacao2);
+    else if (populacao2 > populacao1)
+        printf("População: %s vence (%d habitantes contra %d)\n", cidade2, populacao2, populacao1);
+    else
+        printf("População: Empate! Ambas têm %d habitantes.\n", populacao1);
 
-            printf("\nCidade: %s (%s)\n", cartas[contador].cidade, cartas[contador].estado);
-            printf("Código da carta: %s\n", cartas[contador].codigo);
+    // Área
+    if (area1 > area2)
+        printf("Área: %s vence (%.2f km² contra %.2f km²)\n", cidade1, area1, area2);
+    else if (area2 > area1)
+        printf("Área: %s vence (%.2f km² contra %.2f km²)\n", cidade2, area2, area1);
+    else
+        printf("Área: Empate! Ambas têm %.2f km².\n", area1);
 
-            printf("População (em milhões): ");
-            scanf("%f", &cartas[contador].populacao);
+    // PIB
+    if (pib1 > pib2)
+        printf("PIB: %s vence (%.2f bi contra %.2f bi)\n", cidade1, pib1, pib2);
+    else if (pib2 > pib1)
+        printf("PIB: %s vence (%.2f bi contra %.2f bi)\n", cidade2, pib2, pib1);
+    else
+        printf("PIB: Empate! Ambas têm %.2f bilhões.\n", pib1);
 
-            printf("Área total (em km²): ");
-            scanf("%f", &cartas[contador].area);
+    // Pontos Turísticos
+    if (pontosTuristicos1 > pontosTuristicos2)
+        printf("Pontos Turísticos: %s vence (%d contra %d)\n", cidade1, pontosTuristicos1, pontosTuristicos2);
+    else if (pontosTuristicos2 > pontosTuristicos1)
+        printf("Pontos Turísticos: %s vence (%d contra %d)\n", cidade2, pontosTuristicos2, pontosTuristicos1);
+    else
+        printf("Pontos Turísticos: Empate! Ambas têm %d pontos.\n", pontosTuristicos1);
 
-            printf("PIB (em bilhões de reais): ");
-            scanf("%f", &cartas[contador].pib);
-
-            printf("Número de pontos turísticos: ");
-            scanf("%d", &cartas[contador].pontosTuristicos);
-
-            contador++;
-        }
-        printf("\nTodas as cidades do estado %s foram cadastradas.\n\n", estados[i]);
-    }
-
-    printf("\n=============================================\n");
-    printf("          CARTAS CADASTRADAS\n");
-    printf("=============================================\n");
-
-    for (int i = 0; i < TOTAL_CARTAS; i++) {
-        printf("\n---------------------------------------------\n");
-        printf("Código: %s\n", cartas[i].codigo);
-        printf("Cidade: %s\n", cartas[i].cidade);
-        printf("Estado: %s\n", cartas[i].estado);
-        printf("População: %.2f milhões\n", cartas[i].populacao);
-        printf("Área: %.2f km²\n", cartas[i].area);
-        printf("PIB: %.2f bilhões\n", cartas[i].pib);
-        printf("Pontos turísticos: %d\n", cartas[i].pontosTuristicos);
-    }
-
-    printf("\n=============================================\n");
-    printf("Cadastro concluído com sucesso!\n");
-    printf("Agora todas as cartas estão prontas para o jogo.\n");
-    printf("=============================================\n");
+    printf("\n===== FIM DO JOGO =====\n");
 
     return 0;
 }
+
+      
+  
